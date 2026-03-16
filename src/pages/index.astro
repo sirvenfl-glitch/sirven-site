@@ -1,0 +1,330 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+
+const projects = [
+  { url: 'https://www.flaynn.fr/', tag: 'SaaS', name: 'Flaynn', domain: 'flaynn.fr' },
+  { url: 'https://proprio-link.fr/', tag: 'Immobilier', name: 'Proprio Link', domain: 'proprio-link.fr' },
+  { url: 'https://www.secoursparebrise.fr/', tag: 'Services auto', name: 'Secours Pare-Brise', domain: 'secoursparebrise.fr' },
+  { url: 'https://4dayvelopment.com/', tag: 'Agence digitale', name: '4Dayvelopment', domain: '4dayvelopment.com' },
+  { url: 'https://composeparis.fr/', tag: 'Restaurant', name: 'Compose Paris', domain: 'composeparis.fr' },
+  { url: 'https://emoi-agency.fr/', tag: 'Agence digitale', name: 'Emoi Agency', domain: 'emoi-agency.fr' },
+  { url: 'https://inspiofficiel.fr/', tag: 'Collectif cinéma', name: 'Inspi Officiel', domain: 'inspiofficiel.fr' },
+  { url: 'https://thiepsrestaurant.fr/', tag: 'Restaurant', name: "Thiep's Restaurant", domain: 'thiepsrestaurant.fr' },
+];
+---
+
+<Base title="Sirven — Web & IA">
+  <Nav currentPage="home" />
+
+  <!-- HERO -->
+  <section class="page-section hero">
+    <div class="container hero-content">
+      <p class="hero-eyebrow" data-fr="Sites web · Automatisation · IA" data-en="Websites · Automation · AI">Sites web · Automatisation · IA</p>
+      <h1 class="hero-title" data-fr="Je construis des sites qui donnent <em>envie de vous choisir</em> avant même le premier échange." data-en="I build websites that make people <em>choose you</em> before the first word is said.">
+        Je construis des sites qui donnent <em>envie de vous choisir</em> avant même le premier échange.
+      </h1>
+      <p class="hero-sub" data-fr="Vous avez quelque chose de sérieux à proposer. Votre présence en ligne devrait le montrer avant que vous ayez à l'expliquer." data-en="You have something real to offer. Your online presence should show it before you have to explain it.">
+        Vous avez quelque chose de sérieux à proposer. Votre présence en ligne devrait le montrer avant que vous ayez à l'expliquer.
+      </p>
+      <p class="hero-cadrage" data-fr="Pour marques, agences et business qui veulent être pris au sérieux dès le premier regard." data-en="For brands, agencies and businesses that want to be taken seriously from the very first glance.">
+        Pour marques, agences et business qui veulent être pris au sérieux dès le premier regard.
+      </p>
+      <a href="/contact" class="hero-cta">
+        <span data-fr="Démarrer un projet" data-en="Start a project">Démarrer un projet</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+    <div class="hero-bg-line"></div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="page-section section">
+    <div class="container">
+      <p class="section-label reveal" data-fr="Services" data-en="Services">Services</p>
+      <div class="services-grid">
+        <div class="service-card reveal reveal-delay-1">
+          <p class="service-num">01</p>
+          <h2 class="service-title" data-fr="Sites web" data-en="Websites">Sites web</h2>
+          <p class="service-desc" data-fr="Vos visiteurs décident en quelques secondes si vous êtes crédibles. Je construis des sites qui gagnent ce verdict dès le premier scroll." data-en="Your visitors decide in seconds whether you're worth their time. I build sites that win that verdict on the first scroll.">
+            Vos visiteurs décident en quelques secondes si vous êtes crédibles. Je construis des sites qui gagnent ce verdict dès le premier scroll.
+          </p>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <p class="service-num">02</p>
+          <h2 class="service-title" data-fr="Automatisation IA" data-en="AI Automation">Automatisation IA</h2>
+          <p class="service-desc" data-fr="Chaque message sans réponse, chaque rendez-vous raté, c'est du business perdu. Je mets en place des automatisations simples qui capturent ces opportunités à votre place." data-en="Every unanswered message, every missed booking is lost business. I set up simple automations that capture those opportunities for you.">
+            Chaque message sans réponse, chaque rendez-vous raté, c'est du business perdu. Je mets en place des automatisations simples qui capturent ces opportunités à votre place.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKS -->
+  <section class="page-section section" style="padding-top: 96px;">
+    <div class="container">
+      <div class="works-header reveal">
+        <h2 class="works-title" data-fr="Quelques projets." data-en="Selected work.">Quelques projets.</h2>
+        <p class="works-subtitle" data-fr="Des secteurs différents. Un seul standard." data-en="Different industries. One standard.">Des secteurs différents. Un seul standard.</p>
+      </div>
+      <div class="works-grid">
+        {projects.map((p, i) => (
+          <a href={p.url} target="_blank" rel="noopener" class={`work-item reveal reveal-delay-${(i % 4) + 1}`}>
+            <span class="work-arrow">↗</span>
+            <span class="work-tag">{p.tag}</span>
+            <div>
+              <p class="work-name">{p.name}</p>
+              <p class="work-domain">{p.domain}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="page-section reveal">
+    <div class="container">
+      <div class="cta-inner">
+        <h2 class="cta-title" data-fr="Vous avez un projet en tête ?" data-en="Got something in mind?">Vous avez un projet en tête ?</h2>
+        <p class="cta-sub" data-fr="Prenons 20 minutes pour voir ce qu'on peut faire." data-en="Let's take 20 minutes and see what we can build.">Prenons 20 minutes pour voir ce qu'on peut faire.</p>
+        <a href="/contact" class="cta-btn">
+          <span data-fr="Démarrer un projet" data-en="Start a project">Démarrer un projet</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-line {
+    position: absolute;
+    top: 50%; left: -10%;
+    width: 120%; height: 1px;
+    background: var(--border);
+    transform: rotate(-6deg);
+  }
+  .hero-content { position: relative; z-index: 2; }
+  .hero-eyebrow {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s ease forwards 0.3s;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 6.5vw, 90px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    color: var(--fg);
+    max-width: 900px;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.9s ease forwards 0.5s;
+  }
+  .hero-title :global(em) { font-style: normal; color: var(--accent); }
+  .hero-sub {
+    font-size: clamp(15px, 1.5vw, 18px);
+    font-weight: 300;
+    color: var(--fg-muted);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+  .hero-cadrage {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--fg-muted);
+    border-left: 2px solid var(--accent);
+    padding-left: 16px;
+    margin-bottom: 40px;
+    max-width: 480px;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.8s ease forwards 1.0s;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--bg);
+    background: var(--accent);
+    border: none;
+    padding: 16px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.1s;
+  }
+  .hero-cta:hover { opacity: 0.88 !important; transform: scale(1.02); }
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px; right: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 1.3s;
+  }
+  .hero-scroll span {
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--fg-muted);
+    text-transform: uppercase;
+    writing-mode: vertical-lr;
+  }
+  .scroll-line { width: 1px; height: 60px; background: var(--border); position: relative; overflow: hidden; }
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -100%; left: 0;
+    width: 100%; height: 100%;
+    background: var(--accent);
+    animation: scrollAnim 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollAnim { 0% { top: -100%; } 100% { top: 100%; } }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+  /* SECTION */
+  .section { padding: 120px 0; }
+  .section-label {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 64px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 80px; }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .service-card {
+    border: 1px solid var(--border);
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.4s;
+  }
+  .service-card:first-child { border-right: none; }
+  .service-card::before { content: ''; position: absolute; inset: 0; background: var(--accent-glow); opacity: 0; transition: opacity 0.4s; }
+  .service-card:hover { border-color: var(--border-hover); }
+  .service-card:hover::before { opacity: 1; }
+  .service-num { font-family: var(--font-display); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; color: var(--fg-muted); margin-bottom: 32px; }
+  .service-title { font-family: var(--font-display); font-size: clamp(24px, 3vw, 38px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px; color: var(--fg); }
+  .service-desc { font-size: 16px; font-weight: 300; color: var(--fg-muted); line-height: 1.75; max-width: 380px; }
+
+  /* WORKS */
+  .works-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; }
+  .works-title { font-family: var(--font-display); font-size: clamp(32px, 4.5vw, 58px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; }
+  .works-subtitle { font-size: 14px; font-weight: 300; color: var(--fg-muted); text-align: right; max-width: 200px; line-height: 1.6; }
+  .works-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+  .work-item {
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--fg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: border-color 0.3s;
+    aspect-ratio: 1 / 1.1;
+  }
+  .work-item:not(:last-child) { border-right: none; }
+  .work-item:nth-child(n+5) { border-top: none; }
+  .work-item::before { content: ''; position: absolute; inset: 0; background: var(--accent-glow); opacity: 0; transition: opacity 0.4s; }
+  .work-item:hover { border-color: var(--border-hover); }
+  .work-item:hover::before { opacity: 1; }
+  .work-item:hover .work-arrow { transform: translate(4px, -4px); }
+  .work-tag { font-family: var(--font-display); font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fg-muted); }
+  .work-name { font-family: var(--font-display); font-size: clamp(15px, 1.5vw, 19px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 8px; }
+  .work-domain { font-size: 12px; color: var(--fg-muted); font-weight: 300; }
+  .work-arrow { font-size: 18px; color: var(--accent); transition: transform 0.3s; position: absolute; top: 28px; right: 28px; }
+
+  /* CTA */
+  .cta-inner { padding: 140px 0; text-align: center; position: relative; }
+  .cta-inner::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 1px; height: 80px; background: var(--border); }
+  .cta-title { font-family: var(--font-display); font-size: clamp(32px, 5vw, 68px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 24px; max-width: 700px; margin-left: auto; margin-right: auto; }
+  .cta-sub { font-size: 16px; font-weight: 300; color: var(--fg-muted); margin-bottom: 48px; }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 18px 40px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .cta-btn:hover { opacity: 0.88; transform: scale(1.02); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .service-card:first-child { border-right: 1px solid var(--border); border-bottom: none; }
+    .works-grid { grid-template-columns: repeat(2, 1fr); }
+    .work-item:nth-child(2n) { border-right: 1px solid var(--border); }
+    .work-item:nth-child(odd) { border-right: none; }
+    .works-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .works-subtitle { text-align: left; }
+    .section { padding: 80px 0; }
+    .hero { min-height: 90vh; }
+  }
+  @media (max-width: 600px) {
+    .works-grid { grid-template-columns: 1fr; }
+    .work-item { border-right: 1px solid var(--border) !important; aspect-ratio: unset; padding: 28px 24px; }
+    .work-item:nth-child(n+2) { border-top: none; }
+  }
+</style>

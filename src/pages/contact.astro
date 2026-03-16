@@ -1,0 +1,525 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+---
+
+<Base title="Contact — Sirven">
+  <Nav currentPage="contact" />
+
+  <div class="page-wrap">
+
+    <!-- LEFT -->
+    <div class="left-panel">
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="height: 0%"></div>
+      </div>
+      <div>
+        <p class="left-label" data-fr="Contact" data-en="Contact">Contact</p>
+        <h1 class="left-title" data-fr="Parlons de votre <em>projet.</em>" data-en="Let's talk about your <em>project.</em>">
+          Parlons de votre <em>projet.</em>
+        </h1>
+        <p class="left-sub" data-fr="2 minutes. Je reviens vers vous rapidement avec un créneau pour en discuter." data-en="2 minutes. I'll get back to you quickly with a slot to discuss it.">
+          2 minutes. Je reviens vers vous rapidement avec un créneau pour en discuter.
+        </p>
+      </div>
+      <div class="left-footer">
+        <div class="left-footer-item" data-fr="Réponse sous 24h" data-en="Response within 24h">Réponse sous 24h</div>
+        <div class="left-footer-item" data-fr="Sites web sur-mesure" data-en="Custom websites">Sites web sur-mesure</div>
+        <div class="left-footer-item" data-fr="Automatisation IA" data-en="AI Automation">Automatisation IA</div>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right-panel">
+
+      <!-- STEP 1 -->
+      <div class="step active" id="step-1">
+        <div>
+          <p class="step-num" data-fr="01 / 05" data-en="01 / 05">01 / 05</p>
+          <h2 class="step-title" data-fr="Qui êtes-vous ?" data-en="Who are you?">Qui êtes-vous ?</h2>
+        </div>
+        <div class="fields">
+          <div class="field-group">
+            <label class="field-label" data-fr="Prénom / Nom" data-en="First / Last name">Prénom / Nom</label>
+            <input class="field-input" type="text" id="field-name" placeholder="Jean Dupont" autocomplete="name" />
+            <span class="field-error" id="err-name" data-fr="Ce champ est requis." data-en="This field is required.">Ce champ est requis.</span>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Email</label>
+            <input class="field-input" type="email" id="field-email" placeholder="jean@exemple.fr" autocomplete="email" />
+            <span class="field-error" id="err-email" data-fr="Entrez un email valide." data-en="Enter a valid email.">Entrez un email valide.</span>
+          </div>
+        </div>
+        <div class="step-nav">
+          <button class="btn-back hidden"></button>
+          <button class="btn-next" onclick="nextStep(1)">
+            <span data-fr="Suivant" data-en="Next">Suivant</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step" id="step-2">
+        <div>
+          <p class="step-num">02 / 05</p>
+          <h2 class="step-title" data-fr="Quel est votre besoin ?" data-en="What do you need?">Quel est votre besoin ?</h2>
+        </div>
+        <div class="options-grid">
+          <div class="option-item" onclick="selectOption('projectType', 'site', this)">
+            <span class="option-label" data-fr="Un site web" data-en="A website">Un site web</span>
+            <span class="option-check"></span>
+          </div>
+          <div class="option-item" onclick="selectOption('projectType', 'automation', this)">
+            <span class="option-label" data-fr="Une automatisation IA" data-en="AI Automation">Une automatisation IA</span>
+            <span class="option-check"></span>
+          </div>
+          <div class="option-item" onclick="selectOption('projectType', 'both', this)">
+            <span class="option-label" data-fr="Les deux" data-en="Both">Les deux</span>
+            <span class="option-check"></span>
+          </div>
+        </div>
+        <span class="field-error" id="err-projectType" data-fr="Sélectionnez une option." data-en="Select an option.">Sélectionnez une option.</span>
+        <div class="step-nav">
+          <button class="btn-back" onclick="prevStep(2)">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-fr="Retour" data-en="Back">Retour</span>
+          </button>
+          <button class="btn-next" onclick="nextStep(2)">
+            <span data-fr="Suivant" data-en="Next">Suivant</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3 — Budget conditionnel -->
+      <div class="step" id="step-3">
+        <div>
+          <p class="step-num">03 / 05</p>
+          <h2 class="step-title" data-fr="Quel est votre budget ?" data-en="What's your budget?">Quel est votre budget ?</h2>
+        </div>
+        <div class="options-grid" id="budget-options"></div>
+        <span class="field-error" id="err-budget" data-fr="Sélectionnez une option." data-en="Select an option.">Sélectionnez une option.</span>
+        <div class="step-nav">
+          <button class="btn-back" onclick="prevStep(3)">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-fr="Retour" data-en="Back">Retour</span>
+          </button>
+          <button class="btn-next" onclick="nextStep(3)">
+            <span data-fr="Suivant" data-en="Next">Suivant</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 4 — Délai -->
+      <div class="step" id="step-4">
+        <div>
+          <p class="step-num">04 / 05</p>
+          <h2 class="step-title" data-fr="Quand souhaitez-vous démarrer ?" data-en="When do you want to start?">Quand souhaitez-vous démarrer ?</h2>
+        </div>
+        <div class="options-grid">
+          <div class="option-item" onclick="selectOption('deadline', 'asap', this)">
+            <span class="option-label" data-fr="Dans les 2 semaines" data-en="Within 2 weeks">Dans les 2 semaines</span>
+            <span class="option-check"></span>
+          </div>
+          <div class="option-item" onclick="selectOption('deadline', 'month', this)">
+            <span class="option-label" data-fr="Dans le mois" data-en="Within the month">Dans le mois</span>
+            <span class="option-check"></span>
+          </div>
+          <div class="option-item" onclick="selectOption('deadline', 'quarter', this)">
+            <span class="option-label" data-fr="Dans 1 à 3 mois" data-en="In 1 to 3 months">Dans 1 à 3 mois</span>
+            <span class="option-check"></span>
+          </div>
+          <div class="option-item" onclick="selectOption('deadline', 'undefined', this)">
+            <span class="option-label" data-fr="Pas encore défini" data-en="Not yet defined">Pas encore défini</span>
+            <span class="option-check"></span>
+          </div>
+        </div>
+        <span class="field-error" id="err-deadline" data-fr="Sélectionnez une option." data-en="Select an option.">Sélectionnez une option.</span>
+        <div class="step-nav">
+          <button class="btn-back" onclick="prevStep(4)">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-fr="Retour" data-en="Back">Retour</span>
+          </button>
+          <button class="btn-next" onclick="nextStep(4)">
+            <span data-fr="Suivant" data-en="Next">Suivant</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 5 — Description + Upload -->
+      <div class="step" id="step-5">
+        <div>
+          <p class="step-num">05 / 05</p>
+          <h2 class="step-title" data-fr="Parlez-moi de votre projet." data-en="Tell me about your project.">Parlez-moi de votre projet.</h2>
+        </div>
+        <div class="fields">
+          <div class="field-group">
+            <label class="field-label" data-fr="Description" data-en="Description">Description</label>
+            <textarea class="field-textarea" id="field-desc" placeholder="Votre activité, ce que vous voulez accomplir, ce que vous avez déjà ou pas encore…"></textarea>
+            <span class="field-error" id="err-desc" data-fr="Décrivez votre projet." data-en="Describe your project.">Décrivez votre projet.</span>
+          </div>
+          <div class="field-group">
+            <label class="field-label">
+              <span data-fr="Fichiers" data-en="Files">Fichiers</span>
+              <span class="optional-badge" data-fr="Optionnel" data-en="Optional">Optionnel</span>
+            </label>
+            <div class="upload-area" id="upload-area">
+              <svg class="upload-icon" viewBox="0 0 32 32" fill="none">
+                <path d="M16 4v16M9 11l7-7 7 7M6 24h20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+              </svg>
+              <p class="upload-title" data-fr="Logo, brief, inspirations" data-en="Logo, brief, inspirations">Logo, brief, inspirations</p>
+              <p class="upload-sub">PNG, JPG, PDF — max 10 Mo</p>
+              <input type="file" class="upload-input" id="file-input" multiple accept=".png,.jpg,.jpeg,.pdf" />
+            </div>
+            <div class="upload-files" id="upload-files-list"></div>
+          </div>
+        </div>
+        <div class="step-nav">
+          <button class="btn-back" onclick="prevStep(5)">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span data-fr="Retour" data-en="Back">Retour</span>
+          </button>
+          <button class="btn-next" onclick="submitForm()">
+            <span data-fr="Envoyer" data-en="Send">Envoyer</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="success-step" id="success-step">
+        <div class="success-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M4 10l5 5 7-8" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h2 class="success-title" data-fr="C'est <em>reçu.</em>" data-en="<em>Received.</em>">C'est <em>reçu.</em></h2>
+        <p class="success-sub" data-fr="Réservez directement un créneau dans mon agenda — on se parle bientôt." data-en="Book a slot directly in my calendar — talk soon.">
+          Réservez directement un créneau dans mon agenda — on se parle bientôt.
+        </p>
+        <a href="https://calendar.google.com" target="_blank" rel="noopener" class="success-cal-btn">
+          <span data-fr="Réserver un créneau" data-en="Book a slot">Réserver un créneau</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</Base>
+
+<style>
+  .page-wrap {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    z-index: 2;
+  }
+  .left-panel {
+    padding: 140px 64px 80px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+  .progress-track {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .progress-fill {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    background: var(--accent);
+    transition: height 0.5s ease;
+  }
+  .left-label { font-family: var(--font-display); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 32px; }
+  .left-title { font-family: var(--font-display); font-size: clamp(28px, 3vw, 48px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 20px; }
+  .left-title :global(em) { font-style: normal; color: var(--accent); }
+  .left-sub { font-size: 15px; font-weight: 300; color: var(--fg-muted); line-height: 1.75; max-width: 340px; }
+  .left-footer { display: flex; flex-direction: column; gap: 12px; }
+  .left-footer-item {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .left-footer-item::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); opacity: 0.5; flex-shrink: 0; }
+
+  .right-panel { padding: 140px 40px 80px 64px; display: flex; flex-direction: column; justify-content: center; }
+
+  .step { display: none; flex-direction: column; gap: 36px; }
+  .step.active { display: flex; animation: stepIn 0.4s ease forwards; }
+  @keyframes stepIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  .step-num { font-family: var(--font-display); font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fg-muted); }
+  .step-title { font-family: var(--font-display); font-size: clamp(22px, 2.5vw, 32px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; margin-top: 10px; }
+
+  .fields { display: flex; flex-direction: column; gap: 28px; }
+  .field-group { display: flex; flex-direction: column; gap: 8px; }
+  .field-label { font-family: var(--font-display); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); }
+  .field-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 300;
+    padding: 12px 0;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.3s;
+    caret-color: var(--accent);
+  }
+  .field-input::placeholder { color: var(--fg-muted); opacity: 0.5; }
+  .field-input:focus { border-bottom-color: var(--accent); }
+  .field-textarea {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--fg);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 300;
+    padding: 20px;
+    outline: none;
+    width: 100%;
+    min-height: 140px;
+    resize: none;
+    transition: border-color 0.3s;
+    caret-color: var(--accent);
+    line-height: 1.7;
+  }
+  .field-textarea::placeholder { color: var(--fg-muted); opacity: 0.5; }
+  .field-textarea:focus { border-color: var(--accent); }
+  .field-error { font-size: 12px; color: #E87A6B; font-family: var(--font-display); font-weight: 500; letter-spacing: 0.04em; margin-top: 4px; display: none; }
+  .field-error.visible { display: block; }
+
+  .options-grid { display: flex; flex-direction: column; gap: 2px; }
+  .option-item {
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    cursor: none;
+    transition: border-color 0.25s, background 0.25s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  .option-item:hover { border-color: var(--border-hover); }
+  .option-item.selected { border-color: var(--border-active); background: var(--accent-glow); }
+  .option-label { font-family: var(--font-display); font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+  .option-check { width: 18px; height: 18px; border: 1px solid var(--border); border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: border-color 0.25s, background 0.25s; }
+  .option-item.selected .option-check { border-color: var(--accent); background: var(--accent); }
+  .option-check::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--bg); opacity: 0; transition: opacity 0.2s; }
+  .option-item.selected .option-check::after { opacity: 1; }
+
+  .upload-area {
+    border: 1px dashed var(--border);
+    padding: 40px 24px;
+    text-align: center;
+    cursor: none;
+    transition: border-color 0.3s, background 0.3s;
+    position: relative;
+  }
+  .upload-area:hover, .upload-area.dragging { border-color: var(--border-hover); background: var(--accent-glow); }
+  .upload-icon { width: 32px; height: 32px; margin: 0 auto 12px; opacity: 0.4; }
+  .upload-title { font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .upload-sub { font-size: 12px; font-weight: 300; color: var(--fg-muted); }
+  .upload-input { position: absolute; inset: 0; opacity: 0; cursor: none; }
+  .upload-files { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .upload-file-tag { font-family: var(--font-display); font-size: 11px; font-weight: 600; letter-spacing: 0.06em; color: var(--accent); border: 1px solid var(--border-active); padding: 4px 12px; display: flex; align-items: center; gap: 6px; }
+  .upload-file-tag button { background: none; border: none; color: var(--fg-muted); cursor: none; font-size: 14px; line-height: 1; padding: 0; transition: color 0.2s; }
+  .upload-file-tag button:hover { color: var(--fg); }
+  .optional-badge { font-family: var(--font-display); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); border: 1px solid var(--border); padding: 3px 8px; margin-left: 10px; vertical-align: middle; }
+
+  .step-nav { display: flex; align-items: center; justify-content: space-between; padding-top: 8px; }
+  .btn-back { font-family: var(--font-display); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); background: none; border: none; cursor: none; transition: color 0.2s; display: flex; align-items: center; gap: 8px; padding: 0; }
+  .btn-back:hover { color: var(--fg); }
+  .btn-back.hidden { visibility: hidden; }
+  .btn-next { font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 0.08em; color: var(--bg); background: var(--accent); border: none; padding: 16px 36px; border-radius: 100px; cursor: none; transition: opacity 0.2s, transform 0.2s; display: flex; align-items: center; gap: 10px; }
+  .btn-next:hover { opacity: 0.88; transform: scale(1.02); }
+
+  .success-step { display: none; flex-direction: column; gap: 28px; }
+  .success-step.active { display: flex; animation: stepIn 0.5s ease forwards; }
+  .success-icon { width: 48px; height: 48px; border: 1px solid var(--border-active); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .success-title { font-family: var(--font-display); font-size: clamp(28px, 3vw, 42px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; }
+  .success-title :global(em) { font-style: normal; color: var(--accent); }
+  .success-sub { font-size: 15px; font-weight: 300; color: var(--fg-muted); line-height: 1.75; max-width: 360px; }
+  .success-cal-btn { display: inline-flex; align-items: center; gap: 12px; font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 0.06em; color: var(--bg); background: var(--accent); padding: 16px 32px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s, transform 0.2s; align-self: flex-start; }
+  .success-cal-btn:hover { opacity: 0.88; transform: scale(1.02); }
+
+  @media (max-width: 900px) {
+    .page-wrap { grid-template-columns: 1fr; }
+    .left-panel { position: static; height: auto; padding: 120px 24px 40px; border-right: none; border-bottom: 1px solid var(--border); }
+    .left-footer { display: none; }
+    .progress-track { display: none; }
+    .right-panel { padding: 48px 24px 80px; }
+  }
+</style>
+
+<script>
+  const state = {
+    currentStep: 1,
+    totalSteps: 5,
+    name: '', email: '', projectType: '', budget: '', deadline: '', description: '',
+    files: [] as File[]
+  };
+
+  const budgetOptions: Record<string, { value: string; label: string }[]> = {
+    site: [
+      { value: 'under500', label: 'Moins de 500€' },
+      { value: '500-1500', label: '500€ — 1 500€' },
+      { value: '1500-3000', label: '1 500€ — 3 000€' },
+      { value: '3000+', label: '3 000€ et plus' },
+      { value: 'unknown', label: 'Je ne sais pas encore' }
+    ],
+    automation: [
+      { value: 'under500', label: 'Moins de 500€' },
+      { value: '500-1500', label: '500€ — 1 500€' },
+      { value: '1500+', label: '1 500€ et plus' },
+      { value: 'unknown', label: 'Je ne sais pas encore' }
+    ],
+    both: [
+      { value: '500-1500', label: '500€ — 1 500€' },
+      { value: '1500-3000', label: '1 500€ — 3 000€' },
+      { value: '3000+', label: '3 000€ et plus' },
+      { value: 'unknown', label: 'Je ne sais pas encore' }
+    ]
+  };
+
+  function renderBudgetOptions(type: string) {
+    const container = document.getElementById('budget-options')!;
+    state.budget = '';
+    container.innerHTML = '';
+    (budgetOptions[type] || budgetOptions.site).forEach(opt => {
+      const div = document.createElement('div');
+      div.className = 'option-item';
+      div.innerHTML = `<span class="option-label">${opt.label}</span><span class="option-check"></span>`;
+      div.onclick = () => (window as any).selectOption('budget', opt.value, div);
+      container.appendChild(div);
+    });
+  }
+
+  function selectOption(key: string, value: string, el: HTMLElement) {
+    const grid = el.closest('.options-grid');
+    grid?.querySelectorAll('.option-item').forEach(i => i.classList.remove('selected'));
+    el.classList.add('selected');
+    (state as any)[key] = value;
+    if (key === 'projectType') renderBudgetOptions(value);
+    const errEl = document.getElementById('err-' + key);
+    if (errEl) errEl.classList.remove('visible');
+  }
+  (window as any).selectOption = selectOption;
+
+  function updateProgress() {
+    const pct = ((state.currentStep - 1) / state.totalSteps) * 100;
+    const fill = document.getElementById('progress-fill');
+    if (fill) fill.style.height = pct + '%';
+  }
+
+  function showStep(n: number) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById('step-' + n)?.classList.add('active');
+    state.currentStep = n;
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function nextStep(from: number) {
+    if (from === 1) {
+      const name = (document.getElementById('field-name') as HTMLInputElement).value.trim();
+      const email = (document.getElementById('field-email') as HTMLInputElement).value.trim();
+      let valid = true;
+      if (!name) { document.getElementById('err-name')?.classList.add('visible'); valid = false; }
+      else { document.getElementById('err-name')?.classList.remove('visible'); }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        document.getElementById('err-email')?.classList.add('visible'); valid = false;
+      } else { document.getElementById('err-email')?.classList.remove('visible'); }
+      if (!valid) return;
+      state.name = name; state.email = email;
+      showStep(2);
+    } else if (from === 2) {
+      if (!state.projectType) { document.getElementById('err-projectType')?.classList.add('visible'); return; }
+      renderBudgetOptions(state.projectType);
+      showStep(3);
+    } else if (from === 3) {
+      if (!state.budget) { document.getElementById('err-budget')?.classList.add('visible'); return; }
+      document.getElementById('err-budget')?.classList.remove('visible');
+      showStep(4);
+    } else if (from === 4) {
+      if (!state.deadline) { document.getElementById('err-deadline')?.classList.add('visible'); return; }
+      document.getElementById('err-deadline')?.classList.remove('visible');
+      showStep(5);
+    }
+  }
+  (window as any).nextStep = nextStep;
+
+  function prevStep(from: number) { showStep(from - 1); }
+  (window as any).prevStep = prevStep;
+
+  function submitForm() {
+    const desc = (document.getElementById('field-desc') as HTMLTextAreaElement).value.trim();
+    if (!desc) { document.getElementById('err-desc')?.classList.add('visible'); return; }
+    state.description = desc;
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById('success-step')?.classList.add('active');
+    const fill = document.getElementById('progress-fill');
+    if (fill) fill.style.height = '100%';
+
+    // TODO: POST to n8n webhook
+    // fetch('YOUR_N8N_WEBHOOK_URL', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ name: state.name, email: state.email, projectType: state.projectType, budget: state.budget, deadline: state.deadline, description: state.description })
+    // });
+  }
+  (window as any).submitForm = submitForm;
+
+  // FILE UPLOAD
+  const fileInput = document.getElementById('file-input') as HTMLInputElement;
+  const uploadArea = document.getElementById('upload-area')!;
+  const filesList = document.getElementById('upload-files-list')!;
+
+  fileInput?.addEventListener('change', () => addFiles(fileInput.files!));
+  uploadArea?.addEventListener('dragover', e => { e.preventDefault(); uploadArea.classList.add('dragging'); });
+  uploadArea?.addEventListener('dragleave', () => uploadArea.classList.remove('dragging'));
+  uploadArea?.addEventListener('drop', e => {
+    e.preventDefault();
+    uploadArea.classList.remove('dragging');
+    if (e.dataTransfer?.files) addFiles(e.dataTransfer.files);
+  });
+
+  function addFiles(files: FileList) {
+    Array.from(files).forEach(f => {
+      if (!state.files.find(x => x.name === f.name)) {
+        state.files.push(f);
+        const tag = document.createElement('div');
+        tag.className = 'upload-file-tag';
+        tag.dataset.name = f.name;
+        tag.innerHTML = `${f.name} <button onclick="removeFile('${f.name}', this)">×</button>`;
+        filesList.appendChild(tag);
+      }
+    });
+  }
+
+  function removeFile(name: string, btn: HTMLElement) {
+    state.files = state.files.filter(f => f.name !== name);
+    btn.closest('.upload-file-tag')?.remove();
+  }
+  (window as any).removeFile = removeFile;
+</script>
