@@ -16,8 +16,8 @@ import Nav from '../components/Nav.astro';
         <h1 class="left-title" data-fr="Parlons de votre <em>projet.</em>" data-en="Let's talk about your <em>project.</em>">
           Parlons de votre <em>projet.</em>
         </h1>
-        <p class="left-sub" data-fr="2 minutes. Je reviens vers vous rapidement pour caler un créneau." data-en="2 minutes. I'll get back to you quickly to book a slot.">
-          2 minutes. Je reviens vers vous rapidement pour caler un créneau.
+        <p class="left-sub" data-fr="Remplissez le formulaire et réservez directement un créneau dans mon agenda." data-en="Fill in the form and book a slot directly in my calendar.">
+          Remplissez le formulaire et réservez directement un créneau dans mon agenda.
         </p>
       </div>
       <div class="left-footer">
@@ -194,8 +194,8 @@ import Nav from '../components/Nav.astro';
           </svg>
         </div>
         <h2 class="success-title" data-fr="C'est <em>reçu.</em>" data-en="<em>Received.</em>">C'est <em>reçu.</em></h2>
-        <p class="success-sub" data-fr="Réservez un créneau directement dans mon agenda — on se parle bientôt." data-en="Book a slot directly in my calendar — talk soon.">
-          Réservez un créneau directement dans mon agenda — on se parle bientôt.
+        <p class="success-sub" data-fr="Réservez un créneau directement dans mon agenda. On se parle bientôt." data-en="Book a slot in my calendar. Talk soon.">
+          Réservez un créneau dans mon agenda. On se parle bientôt.
         </p>
         <a href="https://calendar.google.com" target="_blank" rel="noopener" class="success-cal-btn">
           <span data-fr="Réserver un créneau" data-en="Book a slot">Réserver un créneau</span>
@@ -447,19 +447,19 @@ import Nav from '../components/Nav.astro';
   const budgetOptions: Record<string, {value: string; label: string}[]> = {
     site: [
       { value: 'under500', label: 'Moins de 500€' },
-      { value: '500-1500', label: '500€ — 1 500€' },
-      { value: '1500-3000', label: '1 500€ — 3 000€' },
+      { value: '500 - 1500', label: '500€ — 1 500€' },
+      { value: '1500 -3000', label: '1 500€ — 3 000€' },
       { value: '3000+', label: '3 000€ et plus' },
       { value: 'unknown', label: 'Je ne sais pas encore' }
     ],
     automation: [
       { value: 'under500', label: 'Moins de 500€' },
-      { value: '500-1500', label: '500€ — 1 500€' },
+      { value: '500 - 1500', label: '500€ — 1 500€' },
       { value: '1500+', label: '1 500€ et plus' },
       { value: 'unknown', label: 'Je ne sais pas encore' }
     ],
     both: [
-      { value: '500-1500', label: '500€ — 1 500€' },
+      { value: '500 - 1500', label: '500€ — 1 500€' },
       { value: '1500-3000', label: '1 500€ — 3 000€' },
       { value: '3000+', label: '3 000€ et plus' },
       { value: 'unknown', label: 'Je ne sais pas encore' }
